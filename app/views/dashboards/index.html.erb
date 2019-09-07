@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Usuarios</h1>
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Mail</th>
+      <th>Rol</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td>
+          <% if user != current_user %>
+          <%= link_to "Editar rol", edit_user_path(user), class: 'btn btn-success'%>
+          <% end %>
+        </td>
+        <td>
+          <% if user != current_user %>
+          <%= link_to "Eliminar usuario", delete_user_path(user), method: :delete, data: {confirm: '¿Está seguro que quiere eliminar a este usuario?'}, class: 'btn btn-danger'%>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
